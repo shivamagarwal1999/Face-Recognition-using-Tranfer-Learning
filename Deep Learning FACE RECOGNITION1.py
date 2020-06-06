@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
 
 import cv2
 import numpy as np
@@ -49,10 +44,6 @@ cap.release()
 cv2.destroyAllWindows()      
 print("Collecting Samples Complete")
 
-
-# In[1]:
-
-
 from keras.applications import VGG16
 # VGG16 was designed to work on 224 x 224 pixel input images sizes
 img_rows = 64
@@ -63,17 +54,9 @@ model = VGG16(weights = 'imagenet',
                  include_top = False, 
                  input_shape = (img_rows, img_cols, 3))
 
-
-# In[2]:
-
-
 # Let's print our layers 
 for (i,layer) in enumerate(model.layers):
     print(str(i) + " "+ layer.__class__.__name__, layer.trainable)
-
-
-# In[4]:
-
 
 
 def addTopModel(bottom_model, num_classes):
@@ -88,10 +71,6 @@ def addTopModel(bottom_model, num_classes):
     top_model=Dense(64,activation='relu')(top_model)
     top_model = Dense(num_classes, activation = "softmax")(top_model)
     return top_model
-
-
-# In[5]:
-
 
 
 #Adding fully connected layer in VGG
@@ -109,9 +88,6 @@ modelnew = Model(inputs=model.input, outputs=FC_Head)
 print(modelnew.summary())
 
 
-# In[ ]:
-
-
 from keras_preprocessing.image import load_img,img_to_array,ImageDataGenerator
 Datagen=ImageDataGenerator(rotation_range=40,width_shift_range=0.2,height_shift_range=0.2,shear_range=0.2,zoom_range=0.2)
 img=load_img("C://Users//shivam//Desktop//faceRecog//shivam//polo//img.jpg")
@@ -122,10 +98,6 @@ for batch in Datagen.flow(X,batch_size=1,save_to_dir='C://Users//shivam//Desktop
     i+=1
     if i>100:
         break
-
-
-# In[6]:
-
 
 
 #Loading Dataset
@@ -161,8 +133,6 @@ validation_generator = validation_datagen.flow_from_directory(
         class_mode='categorical',
         shuffle=False)
 
-
-# In[7]:
 
 
 from keras.optimizers import Adam
@@ -203,14 +173,11 @@ history = modelnew.fit_generator(
 modelnew.save("data.h5")
 
 
-# In[8]:
 
 
 from keras.models import load_model
 classifier=load_model('data.h5')
 
-
-# In[11]:
 
 
 from keras.models import load_model
@@ -266,19 +233,8 @@ for i in range(0,10):
 cv2.destroyAllWindows()
 
 
-# In[ ]:
 
 
-
-
-
-# In[ ]:
-
-
-`
-
-
-# In[ ]:
 
 
 
