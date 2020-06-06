@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
 
 
 import cv2
@@ -110,7 +106,7 @@ modelnew = Model(inputs=model.input, outputs=FC_Head)
 print(modelnew.summary())
 
 
-# In[ ]:
+# In[5]:
 
 
 from keras_preprocessing.image import load_img,img_to_array,ImageDataGenerator
@@ -207,14 +203,14 @@ history = modelnew.fit_generator(
 modelnew.save("data.h5")
 
 
-# In[ ]:
+# In[8]:
 
 
 from keras.models import load_model
 classifier=load_model('data.h5')
 
 
-# In[ ]:
+# In[9]:
 
 
 from keras.models import load_model
@@ -272,19 +268,6 @@ for i in range(0,10):
 cv2.destroyAllWindows()
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-`
-
-
-# In[ ]:
 
 
 
